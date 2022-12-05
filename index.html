@@ -1,1 +1,120 @@
-Hello
+<!---<meta http-equiv="refresh" content="20">-->
+<?php
+/*$json = file_get_contents("https://query1.finance.yahoo.com/v8/finance/chart/HND.TO?symbol=HND.TO&period1=1637175363&period2=1637693763&useYfid=true&interval=1m&includePrePost=true&events=div%7Csplit%7Cearn&lang=en-CA&region=CA&crumb=7sZOo%2F2dlMp&corsDomain=ca.finance.yahoo.com");
+
+//https://query1.finance.yahoo.com/v8/finance/chart/LCID?symbol=LCID&period1=1637265600&period2=1637684655&useYfid=true&interval=1d&includePrePost=true&events=div%7Csplit%7Cearn&lang=en-CA&region=CA&crumb=7sZOo%2F2dlMp&corsDomain=ca.finance.yahoo.com
+
+$arr = json_decode($json, true);
+
+echo "<div style='text-align: center; font-size: 4em; width: fit-content; margin: auto; border: 5px #00a559 solid; padding: 5px 15px ; border-radius: 6px ; font-family: system-ui;'>".$arr["chart"]["result"]["0"]["meta"]["regularMarketPrice"]."</div>";
+$cPrice = $arr["chart"]["result"]["0"]["meta"]["regularMarketPrice"];
+
+if($cPrice > 20.00){
+	echo "<br />buy now";
+	mail("ktheepan29@gmail.com","HND price reached to ".$cPric,"HND price reached to ".$cPric);
+}else{
+	//echo "<br />Don't buy now";
+}
+
+echo "<h1 style='font-size:13em;margin:0px;text-align:center;line-height:.95;'>".round(((547*$cPrice)-(547*18.28)),2)."</h1>";
+echo "<h1 style='font-size:13em;margin:0px;text-align:center;line-height:.9;'>".round(((614*$cPrice)-(614*18.60)),2)."</h1>";*/
+
+$s = $_GET["s"];
+?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<style>
+body{
+	font-family: "Poppins",system-ui;
+}
+.row{
+	display:flex;
+	margin-top: 50px;
+}
+.col{
+	width: 25%;
+         padding: 0 35px;
+         text-align: center;
+         font-size: 35px;
+}
+.col h1{
+	font-size:230%;
+	margin:0px;
+	text-align:center;
+	line-height:.9;
+}
+.ccgangegreen{
+	color:black;
+	animation: ccgangegreen 3s;
+}
+@keyframes ccgangegreen{
+	from {color: green;}
+	99% {color:green;}
+	to {color:black;}
+}
+.ccgangered{
+	color:black;
+	animation: ccgangered 3s;
+}
+.drop{font-size: 25px; font-weight: 600;color: #7600f1;}
+@keyframes ccgangered{
+	from {color: red;}
+	99% {color:red;}
+	to {color:black;}
+}
+</style>
+<div class="row">
+<div class="col-12 text-center">
+<button type="button" class="btn getcode btn-dark btn-sm d-inline mx-3" id="GXU.V">GXU</button>
+<button type="button" class="btn getcode btn-dark btn-sm d-inline mx-3" id="EU.V">EU</button>
+<button type="button" class="btn getcode btn-dark btn-sm d-inline mx-3" id="NXE.TO">NXE</button>
+<button type="button" class="btn getcode btn-dark btn-sm d-inline mx-3" id="HNU.TO">HNU</button>
+<button type="button" class="btn getcode btn-dark btn-sm d-inline mx-3" id="CUR.V">CUR</button>
+<button type="button" class="btn getcode btn-dark btn-sm d-inline mx-3" id="GLO.TO">GLO</button>
+</div>
+</div>
+<div class="row">
+<div style='text-align: center; font-size: 4em; width: fit-content; margin: auto;  padding: 5px 15px ;  font-family: Poppins,system-ui;margin-bottom:30px;width:128px;' id="rate">
+
+<!--<select id="s" class="drop">
+	<option value="GXU.V">GXU.V</option>
+	<option value="EU.V">EU.V</option>
+	<option value="NXE.TO">NXE.TO</option>
+	<option value="HNU.TO">HNU.TO</option>
+	<option value="CUR.V">CUR.V</option> 
+	<option value="GLO.TO">GLO.TO</option>
+</select>-->
+</div>
+</div>
+
+<div class="row">
+<div style='text-align: center; font-size: 12em; width: fit-content; margin: auto; border: 5px #00a559 solid; padding: 5px 15px ; border-radius: 6px ; font-family: Poppins,system-ui;font-weight: bolder;' id="newrate"></div>
+</div>
+
+<script>
+$(document).ready(function(){
+	var s = null;
+	//$('#s').on('change', function() {
+	$('.getcode').click( function() {
+		//s = $("#s").find(":selected").val();
+		s = $(this).attr("id");
+		$.get("http://laraveldev.ml/cgetrate.php?s="+s, function(data,status){	
+				$("#newrate").text(data);		
+			});
+	});
+
+	$.get("cgetrate.php?s="+s, function(data,status){	
+				$("#newrate").text(data);		
+			});
+	const interval = setInterval(function(){
+			$.get("http://laraveldev.ml/cgetrate.php?s="+s, function(data,status){	
+				$("#newrate").text(data);		
+			});	
+		}, 5000);
+
+	
+});
+</script>
