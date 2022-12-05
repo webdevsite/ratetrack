@@ -83,7 +83,7 @@ $(document).ready(function(){
 	$('.getcode').click( function() {
 		//s = $("#s").find(":selected").val();
 		s = $(this).attr("id");
-		$.get("https://srate.ml/cgetrate.php?s="+s, function(data,status){	
+		$.get("https://myso123.ml/cgetrate.php?s="+s, function(data,status){	
 				$("#newrate").text(data);		
 			});
 	});
@@ -92,7 +92,7 @@ $(document).ready(function(){
 				$("#newrate").text(data);		
 			});
 	const interval = setInterval(function(){
-			$.get("https://srate.ml/cgetrate.php?s="+s, function(data,status){	
+			$.get("https://myso123.ml/cgetrate.php?s="+s, function(data,status){	
 				$("#newrate").text(data);		
 			});	
 		}, 5000);
