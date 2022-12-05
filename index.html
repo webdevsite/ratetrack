@@ -1,26 +1,6 @@
+<html>
 <!---<meta http-equiv="refresh" content="20">-->
-<?php
-/*$json = file_get_contents("https://query1.finance.yahoo.com/v8/finance/chart/HND.TO?symbol=HND.TO&period1=1637175363&period2=1637693763&useYfid=true&interval=1m&includePrePost=true&events=div%7Csplit%7Cearn&lang=en-CA&region=CA&crumb=7sZOo%2F2dlMp&corsDomain=ca.finance.yahoo.com");
-
-//https://query1.finance.yahoo.com/v8/finance/chart/LCID?symbol=LCID&period1=1637265600&period2=1637684655&useYfid=true&interval=1d&includePrePost=true&events=div%7Csplit%7Cearn&lang=en-CA&region=CA&crumb=7sZOo%2F2dlMp&corsDomain=ca.finance.yahoo.com
-
-$arr = json_decode($json, true);
-
-echo "<div style='text-align: center; font-size: 4em; width: fit-content; margin: auto; border: 5px #00a559 solid; padding: 5px 15px ; border-radius: 6px ; font-family: system-ui;'>".$arr["chart"]["result"]["0"]["meta"]["regularMarketPrice"]."</div>";
-$cPrice = $arr["chart"]["result"]["0"]["meta"]["regularMarketPrice"];
-
-if($cPrice > 20.00){
-	echo "<br />buy now";
-	mail("ktheepan29@gmail.com","HND price reached to ".$cPric,"HND price reached to ".$cPric);
-}else{
-	//echo "<br />Don't buy now";
-}
-
-echo "<h1 style='font-size:13em;margin:0px;text-align:center;line-height:.95;'>".round(((547*$cPrice)-(547*18.28)),2)."</h1>";
-echo "<h1 style='font-size:13em;margin:0px;text-align:center;line-height:.9;'>".round(((614*$cPrice)-(614*18.60)),2)."</h1>";*/
-
-$s = $_GET["s"];
-?>
+<head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,6 +46,8 @@ body{
 	to {color:black;}
 }
 </style>
+	</head>
+<body>
 <div class="row">
 <div class="col-12 text-center">
 <button type="button" class="btn getcode btn-dark btn-sm d-inline mx-3" id="GXU.V">GXU</button>
@@ -118,3 +100,5 @@ $(document).ready(function(){
 	
 });
 </script>
+	</body>
+</html>
